@@ -1,19 +1,16 @@
-import { Component } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HousingLocation } from './housing-location';
-import { LocationService } from './location.service';
 
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class AppComponent {
+export class LocationService {
 
-  constructor(
-    private locationService : LocationService
-  ) { }
-  title = 'fairhouse';
-/*   housingLocationList: HousingLocation[] = [
+  constructor() { }
+
+  log(msg:any){console.log(msg);}
+
+  housingLocationList: HousingLocation[] = [
     {
       name: "Acme Fresh Start Housing",
       city: "Chicago",
@@ -41,12 +38,17 @@ export class AppComponent {
       wifi: false,
       laundry: false,
     }
-  ]; */
+  ];
 
-  selectedLocation: HousingLocation | undefined;// = this.housingLocationList[0];
-
-  updateSelectedLocation(location: HousingLocation) {
-    this.selectedLocation = location;
-    this.locationService.log("updateSelectedLocation");
+  getAllHousingLocations(): HousingLocation[] {
+    return this.housingLocationList;
   }
+
+
+/*   getHousingLocationBySearchText(searchText: String): HousingLocation | undefined {
+    return this.housingLocationList.find
+      (housingLocation => housingLocation.city.toLowerCase().
+        includes(searchText.toLowerCase()));
+  } */
+
 }
