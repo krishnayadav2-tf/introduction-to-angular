@@ -23,8 +23,12 @@ export class HousingListComponent implements OnInit {
   searchHousingLocations(searchText: String){
     //console.log(searchText);
     if (!searchText) return ;
-    this.results=this.locationService.getAllHousingLocations().filter(
-      (location:HousingLocation) => location.city.toLowerCase().includes(searchText.toLowerCase())
+    this.locationService.getAllHousingLocations().subscribe(
+      (res:any) => console.log(res , 'res')
+       // (
+         // res.city.toLowerCase().includes(searchText.toLowerCase())
+       // )
+       
     );
     /*
     this.results=this.locationList.filter(

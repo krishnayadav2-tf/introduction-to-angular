@@ -1,12 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HousingLocation } from './housing-location';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
 
-  constructor() { }
+  locationURL : string ="http://localhost:3000/locations";
+
+  constructor(
+    protected httpClient: HttpClient
+  ) { }
 
   log(msg:any){console.log(msg);}
 
@@ -40,8 +45,11 @@ export class LocationService {
     }
   ];
 
-  getAllHousingLocations(): HousingLocation[] {
-    return this.housingLocationList;
+  getAllHousingLocations(){
+    
+    //const resp = this.httpClient.request('GET', this.locationURL, {responseType:'json'});
+    return this.httpClient.request('GET', this.locationURL, {responseType:'json'})
+    //  this.housingLocationList;
   }
 
 
